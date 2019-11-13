@@ -34,7 +34,8 @@ def execution():
     """
     global physical_time
     global displayed_time
-    recalculate_space_objects_positions(space_objects, time_step.get())
+    recalculate_space_objects_positions(
+        space_objects, time_step.get())
     for body in space_objects:
         update_object_position(space, body)
     physical_time += time_step.get()
@@ -80,7 +81,8 @@ def open_file_dialog():
         space.delete(obj.image)  # удаление старых изображений планет
     in_filename = askopenfilename(filetypes=(("Text file", ".txt"),))
     space_objects = read_space_objects_data_from_file(in_filename)
-    max_distance = max([max(abs(obj.x), abs(obj.y)) for obj in space_objects])
+    max_distance = max([max(abs(obj.x), abs(obj.y))
+                        for obj in space_objects])
     calculate_scale_factor(max_distance)
 
     for obj in space_objects:
@@ -97,7 +99,8 @@ def save_file_dialog():
     функцию считывания параметров системы небесных тел из данного файла.
     Считанные объекты сохраняются в глобальный список space_objects
     """
-    out_filename = asksaveasfilename(filetypes=(("Text file", ".txt"),))
+    out_filename = asksaveasfilename(
+        filetypes=(("Text file", ".txt"),))
     write_space_objects_data_to_file(out_filename, space_objects)
 
 
@@ -117,13 +120,15 @@ def main():
 
     root = tkinter.Tk()
     # космическое пространство отображается на холсте типа Canvas
-    space = tkinter.Canvas(root, width=window_width, height=window_height, bg="black")
+    space = tkinter.Canvas(
+        root, width=window_width, height=window_height, bg="black")
     space.pack(side=tkinter.TOP)
     # нижняя панель с кнопками
     frame = tkinter.Frame(root)
     frame.pack(side=tkinter.BOTTOM)
 
-    start_button = tkinter.Button(frame, text="Start", command=start_execution, width=6)
+    start_button = tkinter.Button(
+        frame, text="Start", command=start_execution, width=6)
     start_button.pack(side=tkinter.LEFT)
 
     time_step = tkinter.DoubleVar()
@@ -132,21 +137,26 @@ def main():
     time_step_entry.pack(side=tkinter.LEFT)
 
     time_speed = tkinter.DoubleVar()
-    scale = tkinter.Scale(frame, variable=time_speed, orient=tkinter.HORIZONTAL)
+    scale = tkinter.Scale(
+        frame, variable=time_speed, orient=tkinter.HORIZONTAL)
     scale.pack(side=tkinter.LEFT)
 
-    load_file_button = tkinter.Button(frame, text="Open file...", command=open_file_dialog)
+    load_file_button = tkinter.Button(
+        frame, text="Open file...", command=open_file_dialog)
     load_file_button.pack(side=tkinter.LEFT)
-    save_file_button = tkinter.Button(frame, text="Save to file...", command=save_file_dialog)
+    save_file_button = tkinter.Button(
+        frame, text="Save to file...", command=save_file_dialog)
     save_file_button.pack(side=tkinter.LEFT)
 
     displayed_time = tkinter.StringVar()
     displayed_time.set(str(physical_time) + " seconds gone")
-    time_label = tkinter.Label(frame, textvariable=displayed_time, width=30)
+    time_label = tkinter.Label(
+        frame, textvariable=displayed_time, width=30)
     time_label.pack(side=tkinter.RIGHT)
 
     root.mainloop()
     print('Modelling finished!')
+
 
 if __name__ == "__main__":
     main()
