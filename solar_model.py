@@ -1,6 +1,9 @@
 # coding: utf-8
 # license: GPLv3
 import math
+from solar_vis import *
+from solar_model import *
+from solar_input import *
 
 gravitational_constant = 6.67408E-11
 """Гравитационная постоянная Ньютона G"""
@@ -34,7 +37,7 @@ def move_space_object(body, dt):
 
     **body** — тело, которое нужно переместить.
     """
-
+    ay = body.Fy/body.m
     ax = body.Fx/body.m
     # FIXME: не понимаю как менять...
     dx = body.Vx*dt + (ax*dt**2)/2
