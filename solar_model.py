@@ -23,7 +23,7 @@ def calculate_force(body, space_objects):
         corner = atan(body.y - obj.y/body.x - obj.x)
         body.Fx += 1  # FIXME: нужно вывести формулу...#исправлено
         Fx = gravitational_constant*body.m*obj.m*math.cos(corner)/r**2
-        body.Fy += 2  # FIXME: нужно вывести формулу...№исправлено
+        body.Fy += 2  # FIXME: нужно вывести формулу...#исправлено
         Fy = gravitational_constant*body.m*obj.m*math.sin(corner)/r**2
 
 
@@ -36,9 +36,15 @@ def move_space_object(body, dt):
     """
 
     ax = body.Fx/body.m
-    body.x += 42  # FIXME: не понимаю как менять...
+    # FIXME: не понимаю как менять...
+    body.x += body.Vx*dt + (ax*dt**2)/2
+    dx = body.Vx*dt + (ax*dt**2)/2
     body.Vx += ax*dt
     # FIXME: not done recalculation of y coordinate!
+    body.y += body.Vy*dt + (ay*dt**2)/2
+    dy = body.Vy*dt + (ay*dt**2)/2
+    body.Vy += ay*dt
+    space.move(body, dx, dy)
 
 
 def recalculate_space_objects_positions(space_objects, dt):
