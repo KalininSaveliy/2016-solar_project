@@ -49,13 +49,13 @@ def parse_star_parameters(line, star):
     **star** — объект звезды.
     """
 
-    star.R = line.split()[1]
+    star.R = float(line.split()[1])
     star.color = line.split()[2].lower()
-    star.m = line.split()[3]
+    star.m = float(line.split()[3])
     star.x = float(line.split()[4])
     star.y = float(line.split()[5])
-    star.Vx = line.split()[6]
-    star.Vy = line.split()[7]
+    star.Vx = float(line.split()[6])
+    star.Vy = float(line.split()[7])
     return star
 
 
@@ -74,13 +74,13 @@ def parse_planet_parameters(line, planet):
     **line** — строка с описание планеты.
     **planet** — объект планеты.
     """
-    planet.R = line.split()[1]
+    planet.R = float(line.split()[1])
     planet.color = line.split()[2].lower()
     planet.m = line.split()[3]
     planet.x = float(line.split()[4])
     planet.y = float(line.split()[5])
-    planet.Vx = line.split()[6]
-    planet.Vy = line.split()[7]
+    planet.Vx = float(line.split()[6])
+    planet.Vy = float(line.split()[7])
     return planet
 
 
