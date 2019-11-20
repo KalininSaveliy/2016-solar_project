@@ -12,7 +12,7 @@ header_font = "Arial-16"
 window_width = 800
 """Ширина окна"""
 
-window_height = 800
+window_height = 400
 """Высота окна"""
 
 scale_factor = None
@@ -55,7 +55,7 @@ def scale_y(y):
     """
 
     return int(y*scale_factor) + window_height//2
-    #return y   fix: not done yet
+    # return y   fix: not done yet
 
 
 def create_star_image(space, star):
@@ -70,7 +70,8 @@ def create_star_image(space, star):
     x = scale_x(star.x)
     y = scale_y(star.y)
     r = star.R
-    star.image = space.create_oval([x - r, y - r], [x + r, y + r], fill=star.color)
+    star.image = space.create_oval(
+        [x - r, y - r], [x + r, y + r], fill=star.color)
 
 
 def create_planet_image(space, planet):
@@ -85,8 +86,9 @@ def create_planet_image(space, planet):
     x = scale_x(planet.x)
     y = scale_y(planet.y)
     r = planet.r
-    planet.image = space.create_oval([x - r, y - r], [x + r, y + r], fill=planet.color)
-    #pass  # FIX: сделать как у звезды
+    planet.image = space.create_oval(
+        [x - r, y - r], [x + r, y + r], fill=planet.color)
+    # pass  # FIX: сделать как у звезды
 
 
 def update_system_name(space, system_name):
@@ -98,7 +100,8 @@ def update_system_name(space, system_name):
     **space** — холст для рисования.
     **system_name** — название системы тел.
     """
-    space.create_text(30, 80, tag="header", text=system_name, font=header_font)
+    space.create_text(30, 80, tag="header",
+                      text=system_name, font=header_font)
 
 
 def update_object_position(space, body):
