@@ -48,7 +48,7 @@ def move_space_object(body, dt):
     body.Vy += ay*dt
 
 
-def recalculate_space_objects_positions(space, space_objects, dt):
+def recalculate_space_objects_positions(space_objects, dt):
     """Пересчитывает координаты объектов.
 
     Параметры:
@@ -60,7 +60,7 @@ def recalculate_space_objects_positions(space, space_objects, dt):
     for body in space_objects:
         calculate_force(body, space_objects)
     for body in space_objects:
-        move_space_object(space, body, dt)
+        move_space_object(body, dt)
 
 
 if __name__ == "__main__":
