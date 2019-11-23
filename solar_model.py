@@ -27,13 +27,11 @@ def calculate_force(body, space_objects):
             corner = math.atan((body.y - obj.y)/(body.x - obj.x))
         else:
             corner = math.pi/2
-        body.Fx += 1  # FIX: нужно вывести формулу...#исправлено
-        Fx = gravitational_constant*body.m*obj.m*math.cos(corner)/r**2
-        body.Fy += 2  # FIX: нужно вывести формулу...#исправлено
-        Fy = gravitational_constant*body.m*obj.m*math.sin(corner)/r**2
+        body.Fx = gravitational_constant*body.m*obj.m*math.cos(corner)/r**2
+        body.Fy = gravitational_constant*body.m*obj.m*math.sin(corner)/r**2
 
 
-def move_space_object(space, body, dt):
+def move_space_object(body, dt):
     """Перемещает тело в соответствии с действующей на него силой.
 
     Параметры:
@@ -42,16 +40,12 @@ def move_space_object(space, body, dt):
     """
     ay = body.Fy/body.m
     ax = body.Fx/body.m
-    # FIX: не понимаю как менять...
     dx = body.Vx*dt + (ax*dt**2)/2
     body.x += dx
     body.Vx += ax*dt
-    # FIX: not done recalculation of y coordinate!
     dy = body.Vy*dt + (ay*dt**2)/2
     body.y += dy
     body.Vy += ay*dt
-    space.move(body.image, dx, dy)
-    print("I'm hero")
 
 
 def recalculate_space_objects_positions(space, space_objects, dt):

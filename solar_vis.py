@@ -55,7 +55,6 @@ def scale_y(y):
     """
 
     return int(y*scale_factor) + window_height//2
-    # return y   fix: not done yet
 
 
 def create_star_image(space, star):
@@ -89,7 +88,6 @@ def create_planet_image(space, planet):
     type(r)
     planet.image = space.create_oval(
         [x - r, y - r], [x + r, y + r], fill=planet.color)
-    # pass  # FIX: сделать как у звезды
 
 
 def update_system_name(space, system_name):
