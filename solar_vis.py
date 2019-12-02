@@ -3,7 +3,7 @@
 
 """Модуль визуализации.
 Нигде, кроме этого модуля, не используются экранные координаты объектов.
-Функции, создающие гaрафические объекты и перемещающие их на экране, принимают физические координаты
+Функции, создающие графические объекты и перемещающие их на экране, принимают физические координаты
 """
 
 header_font = "Arial-16"
@@ -85,7 +85,6 @@ def create_planet_image(space, planet):
     x = scale_x(planet.x)
     y = scale_y(planet.y)
     r = planet.R
-    type(r)
     planet.image = space.create_oval(
         [x - r, y - r], [x + r, y + r], fill=planet.color)
 
@@ -117,7 +116,8 @@ def update_object_position(space, body):
     if x + r < 0 or x - r > window_width or y + r < 0 or y - r > window_height:
         space.coords(body.image, window_width + r, window_height + r,
                      window_width + 2*r, window_height + 2*r)  # положить за пределы окна
-    space.coords(body.image, x - r, y - r, x + r, y + r)
+    else:
+        space.coords(body.image, x - r, y - r, x + r, y + r)
 
 
 if __name__ == "__main__":
